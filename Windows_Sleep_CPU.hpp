@@ -1,7 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <chrono>
+#include <windows.h>
 
 namespace pankey{
 
@@ -10,11 +9,9 @@ namespace pankey{
 		namespace Hardware{
 
 			void sleep(long a_milliseconds){
-				return std::chrono::duration_cast<
-					std::chrono::milliseconds
-				>(
-					std::chrono::steady_clock::now().time_since_epoch()
-				).count();
+				if (a_milliseconds > 0) {
+					::Sleep(static_cast<DWORD>(a_milliseconds));
+				}
 			}
 
 		}
